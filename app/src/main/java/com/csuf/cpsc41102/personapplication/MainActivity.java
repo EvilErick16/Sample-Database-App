@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         Person p1 = new Person("John", "Welch");
         ArrayList<Vehicle> vehicles1 = new ArrayList<Vehicle>();
-        vehicles1 = new ArrayList<>();
         vehicles1.add(new Vehicle("999988", "Toyota", "Camry"));
         p1.setVehicles(vehicles1);
         personList.add(p1);

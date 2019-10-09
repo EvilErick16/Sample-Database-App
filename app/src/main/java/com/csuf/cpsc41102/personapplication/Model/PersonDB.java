@@ -7,11 +7,11 @@ public class PersonDB {
 
     protected ArrayList<Person> mPeople;
 
-    static public PersonDB getInstance() {
-        return ourInstance;
+    private PersonDB() {
     }
 
-    private PersonDB() {
+    static public PersonDB getInstance() {
+        return ourInstance;
     }
 
     public ArrayList<Person> getPeople() {
