@@ -21,6 +21,7 @@ public class SummaryLVActivity extends Activity {
 
         setContentView(R.layout.summary_list_view);
 
+        createPersonObjects();
         mSummaryView = findViewById(R.id.summary_list_view_id);
         SummaryLVAdapter ad = new SummaryLVAdapter();
         mSummaryView.setAdapter(ad);
@@ -32,9 +33,7 @@ public class SummaryLVActivity extends Activity {
         Person p = new Person("James", "Shen");
         ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
         vehicles.add(new Vehicle("999999", "Toyota", "Corolla"));
-        //vehicles.add(new Vehicle("999998", "Toyota", "Forerunner"));
-        //vehicles.add(new Vehicle("999997", "Honda", "Civic"));
-        //vehicles.add(new Vehicle("999996", "Honda", "Accord"));
+        vehicles.add(new Vehicle("9999998", "Lexus", "LFA"));
         p.setVehicles(vehicles);
         personList.add(p);
 
