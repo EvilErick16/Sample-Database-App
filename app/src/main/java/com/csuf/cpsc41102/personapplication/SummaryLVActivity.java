@@ -18,6 +18,7 @@ public class SummaryLVActivity extends Activity {
 
     protected ListView mSummaryView;
     protected final String TAG = "Summary Screen";
+    protected SummaryLVAdapter ad;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,35 +27,15 @@ public class SummaryLVActivity extends Activity {
 
         setContentView(R.layout.summary_list_view);
 
-        createPersonObjects();
         mSummaryView = findViewById(R.id.summary_list_view_id);
-        SummaryLVAdapter ad = new SummaryLVAdapter();
+        ad = new SummaryLVAdapter();
         mSummaryView.setAdapter(ad);
-    }
-
-    protected void createPersonObjects() {
-        ArrayList<Person> personList = new ArrayList<Person>();
-
-        Person p = new Person("James", "Shen");
-        ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-        vehicles.add(new Vehicle("999999", "Toyota", "Corolla"));
-        vehicles.add(new Vehicle("9999998", "Lexus", "LFA"));
-        p.setVehicles(vehicles);
-        personList.add(p);
-
-        Person p1 = new Person("John", "Welch");
-        ArrayList<Vehicle> vehicles1 = new ArrayList<Vehicle>();
-        vehicles1.add(new Vehicle("999988", "Toyota", "Camry"));
-        p1.setVehicles(vehicles1);
-        personList.add(p1);
-
-        PersonDB.getInstance().setPeople(personList);
-
     }
 
     @Override
     protected void onStart() {
         Log.d(TAG, "onStart() called");
+        ad.notifyDataSetChanged();
         super.onStart();
     }
 
