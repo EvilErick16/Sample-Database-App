@@ -12,7 +12,7 @@
         <activity android:name=".PersonDetailActivity"
             android:parentActivityName=".SummaryLVActivity">
         </activity>
-        <activity android:name=".SummaryLVActivity"
+        <activity android:name=".DatabaseActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
