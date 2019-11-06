@@ -1,15 +1,22 @@
 package com.csuf.cpsc41102.personapplication.Model;
 
-public class Vehicle {
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
+public class Vehicle extends PersistentObject {
     protected String mVin;
     protected String mMake;
     protected String mModel;
+    protected int mSsn;
 
-    public Vehicle(String vin, String make, String model) {
+    public Vehicle(String vin, String make, String model, int ssn) {
         mVin = vin;
         mMake = make;
         mModel = model;
+        mSsn = ssn;
     }
+
+    public Vehicle(){}
 
     public String getVin() {
         return mVin;
@@ -33,5 +40,20 @@ public class Vehicle {
 
     public void setModel(String model) {
         mModel = model;
+    }
+
+    @Override
+    public void insert(SQLiteDatabase db) {
+        ContentValues vals = new ContentValues();
+        vals.put("VIN", mVin);
+        vals.put("Make", mMake);
+        vals.put("Model", mModel);
+        vals.put("Owner", mSsn);
+        db.insert("Person", null, vals);
+    }
+
+    @Override
+    public void createTable(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE IF NOT EXISTS Vehicle (VIN Text, Make Text, Model Text, Owner INTEGER)");
     }
 }

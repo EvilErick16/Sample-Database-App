@@ -28,7 +28,7 @@ public class SummaryLVActivity extends Activity {
         setContentView(R.layout.summary_list_view);
 
         mSummaryView = findViewById(R.id.summary_list_view_id);
-        ad = new SummaryLVAdapter();
+        ad = new SummaryLVAdapter(this);
         mSummaryView.setAdapter(ad);
     }
 

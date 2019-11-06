@@ -19,6 +19,7 @@ public class PersonDetailActivity extends AppCompatActivity {
     protected Menu detailMenu;
     protected int personIndex;
     protected final String TAG = "Detail Screen";
+    private PersonDB pdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class PersonDetailActivity extends AppCompatActivity {
         TextView tv = findViewById(R.id.display_id);
 
         //tv.setText("Details for person " + personIndex);
-        Person pObj = PersonDB.getInstance().getPeople().get(personIndex);
+        Person pObj = pdb.getPeople().get(personIndex);
         EditText fNameView = (EditText) findViewById(R.id.first_name_val_id);
         EditText lNameView = (EditText) findViewById(R.id.last_name_val_id);
         fNameView.setText(pObj.getFirstName());
@@ -63,8 +64,8 @@ public class PersonDetailActivity extends AppCompatActivity {
         else if(item.getItemId() == R.id.action_done){
             EditText fNameView = (EditText) findViewById(R.id.first_name_val_id);
             EditText lNameView = (EditText) findViewById(R.id.last_name_val_id);
-            PersonDB.getInstance().getPeople().get(personIndex).setFirstName(fNameView.getText().toString());
-            PersonDB.getInstance().getPeople().get(personIndex).setLastName(lNameView.getText().toString());
+            pdb.getPeople().get(personIndex).setFirstName(fNameView.getText().toString());
+            pdb.getPeople().get(personIndex).setLastName(lNameView.getText().toString());
             fNameView.setEnabled(false);
             lNameView.setEnabled(false);
             detailMenu.findItem(R.id.action_edit).setVisible(true);

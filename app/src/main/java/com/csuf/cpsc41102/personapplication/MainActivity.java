@@ -1,4 +1,4 @@
-package com.csuf.cpsc41102.personapplication;
+/*package com.csuf.cpsc41102.personapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -61,3 +61,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+*/

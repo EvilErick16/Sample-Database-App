@@ -1,5 +1,6 @@
 package com.csuf.cpsc41102.personapplication.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +15,18 @@ import com.csuf.cpsc41102.personapplication.R;
 
 public class SummaryLVAdapter extends BaseAdapter {
 
-    protected int count = 0;
+    private PersonDB mPersonDB;
+    public SummaryLVAdapter(Context context){
+        mPersonDB = new PersonDB(context);
+    }
 
     @Override
     public int getCount() {
-        return PersonDB.getInstance().getPeople().size();
+        return mPersonDB.getPeople().size();
     }
     @Override
     public Object getItem(int i) {
-        return PersonDB.getInstance().getPeople().get(i);
+        return mPersonDB.getPeople().get(i);
     }
     @Override
     public long getItemId(int i) {
@@ -32,13 +36,12 @@ public class SummaryLVAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View row_view;
         if (view == null){
-            count++;
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
             row_view = inflater.inflate(R.layout.person_row, viewGroup, false);
         }
         else row_view = view;
 
-        Person p = PersonDB.getInstance().getPeople().get(i);
+        Person p = mPersonDB.getPeople().get(i);
 
         TextView firstNameView = row_view.findViewById(R.id.first_name);
         firstNameView.setText(p.getFirstName());
