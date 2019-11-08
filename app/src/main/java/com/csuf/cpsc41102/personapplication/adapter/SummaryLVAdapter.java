@@ -18,6 +18,7 @@ public class SummaryLVAdapter extends BaseAdapter {
     private PersonDB mPersonDB;
     public SummaryLVAdapter(Context context){
         mPersonDB = new PersonDB(context);
+        mPersonDB.retrievePersonObjects();
     }
 
     @Override

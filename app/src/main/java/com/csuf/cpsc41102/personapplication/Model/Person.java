@@ -1,6 +1,7 @@
 package com.csuf.cpsc41102.personapplication.Model;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -58,6 +59,23 @@ public class Person extends PersistentObject {
 
         for (int i = 0; i < mVehicles.size(); i++ ){
             mVehicles.get(i).insert(db);
+        }
+    }
+
+    @Override
+    public void initFrom(SQLiteDatabase db, Cursor c) {
+        mFirstName = c.getString(c.getColumnIndex("FirstName"));
+        mLastName = c.getString(c.getColumnIndex("LastName"));
+        mSsn = c.getInt(c.getColumnIndex("SSN"));
+
+        // Construct the vehicle object owned by the person
+        mVehicles = new ArrayList<>();
+        Cursor cursor =  db.query("Vehicle", null, "Owner=?", new String[]{new Integer(mSsn).toString()},null,null, null);
+        if (cursor.getCount() > 0 ){
+            while (cursor.moveToNext()){
+                Vehicle vObj = new Vehicle();
+                vObj.initFrom(db, cursor);
+            }
         }
     }
 

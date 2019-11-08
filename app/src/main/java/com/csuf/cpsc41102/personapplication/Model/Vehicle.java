@@ -1,6 +1,7 @@
 package com.csuf.cpsc41102.personapplication.Model;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class Vehicle extends PersistentObject {
@@ -50,6 +51,14 @@ public class Vehicle extends PersistentObject {
         vals.put("Model", mModel);
         vals.put("Owner", mSsn);
         db.insert("Person", null, vals);
+    }
+
+    @Override
+    public void initFrom(SQLiteDatabase db, Cursor c) {
+        mVin = c.getString(c.getColumnIndex("VIN"));
+        mMake = c.getString(c.getColumnIndex("Make"));
+        mModel = c.getString(c.getColumnIndex("Model"));
+        mSsn = c.getInt(c.getColumnIndex("Owner"));
     }
 
     @Override
